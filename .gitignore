@@ -1,0 +1,4 @@
+# compile these locally
+googleapis
+rpc_pb2_grpc.py
+rpc_pb2.py
