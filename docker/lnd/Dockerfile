@@ -3,10 +3,7 @@ FROM golang:1.12-alpine as builder
 MAINTAINER Olaoluwa Osuntokun <lightning.engineering>
 
 # Copy in the local repository to build from.
-COPY . /go/src/github.com/lightningnetwork/lnd
-
-# Copy in the sense directory. TODO: should really be in a separate project and pull in stable LND
-COPY ../lightning-sense-py /sense
+COPY lnd /go/src/github.com/lightningnetwork/lnd
 
 # Force Go to use the cgo based DNS resolver. This is required to ensure DNS
 # queries required to connect to linked containers succeed.
@@ -43,6 +40,9 @@ RUN apk add --no-cache \
 # RUN curl -o rpc.proto -s https://raw.githubusercontent.com/lightningnetwork/lnd/master/lnrpc/rpc.proto
 # RUN python -m grpc_tools.protoc --proto_path=googleapis:. --python_out=. --grpc_python_out=. rpc.proto
 
-# Copy the entrypoint script.
-COPY "docker/lnd/start-lnd.sh" .
+# Copy in the sense directory. TODO: should really be in a separate project and pull in stable LND
+COPY lightning-sense-py /sense
+
+# Copy the entrypoint script. TODO: merge with previous COPY
+COPY "lightning-sense-py/docker/lnd/start-lnd.sh" .
 RUN chmod +x start-lnd.sh

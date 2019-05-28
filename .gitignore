@@ -1,4 +1,9 @@
+# thicc af lnd source if building here
+lnd
+
 # compile these locally
 googleapis
 rpc_pb2_grpc.py
 rpc_pb2.py
+
+

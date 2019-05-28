@@ -65,8 +65,8 @@ services:
     lnd:
         image: lnd
         build:
-          context: ../../lnd
-          dockerfile: ../lightning-sense-py/docker/lnd/Dockerfile
+          context: ../..
+          dockerfile: lightning-sense-py/docker/lnd/Dockerfile
         environment:
           - RPCUSER
           - RPCPASS
